@@ -1,9 +1,24 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-
+import TextInput from './Form/TextInput'
+import TextArea from './Form/TextArea'
 
 class QuoteScene extends Component {
     
+    constructor () {
+        super()
+        this.state = {
+            quote: "",
+            tags: "",
+            author: "",
+            source: "",
+            link: ""
+        }
+        this.handleInputChange = this.handleInputChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+
+    }
+
     static propTypes = {
         iconName: PropTypes.string,
         title: PropTypes.string,
@@ -13,33 +28,62 @@ class QuoteScene extends Component {
         console.log('mounted')
     }
 
+    handleInputChange = (event) => {
+        const target = event.target
+        const value = target.type === 'checkbox' ? target.checked : target.value
+        const name = target.name
+
+        console.log('value', value)
+
+        this.setState({...this.state, [name]:value })
+    }
+    
+    handleSubmit = () => {
+        console.log(this.state)
+    }
+
     render () {
 
         const { title, iconName } = this.props;
         
         return (<div style={styles.container}>
             <div className='pt-card' style={styles.quoteForm}>
-                <label className="pt-label .modifier .pt-fill">
-                    Quote
-                    <textarea className="pt-input .modifier pt-fill" dir="auto"></textarea>
-                </label>
-                 <label className="pt-label .modifier">
-                    Tag(s)
-                    <input className="pt-input pt-fill" style={styles.tags} type="text" placeholder="Text input" dir="auto" />
-                </label>
-                <label className="pt-label .modifier">
-                    Author
-                    <input className="pt-input pt-fill" style={styles.author} type="text" placeholder="Text input" dir="auto" />
-                </label>
-                <label className="pt-label .modifier">
-                    Source
-                    <input className="pt-input pt-fill" style={styles.source} type="text" placeholder="Text input" dir="auto" />
-                </label>
-                <label className="pt-label .modifier">
-                    Link
-                    <input className="pt-input pt-fill" style={styles.link} type="text" placeholder="Text input" dir="auto" />
-                </label>
-                <button type="button" class="pt-button pt-large pt-right">Quote</button>
+                <TextArea 
+                    label="Quote"
+                    name="quote"
+                    value={this.state.quote}
+                    onChange={this.handleInputChange}
+                />
+
+                <TextInput
+                    label="Tag(s)"
+                    name="tags"
+                    value={this.state.tags}
+                    onChange={this.handleInputChange}
+                />
+
+                <TextInput
+                    label="Author"
+                    name="author"
+                    value={this.state.author}
+                    onChange={this.handleInputChange}
+                />
+
+                <TextInput
+                    label="Source"
+                    name="source"
+                    value={this.state.source}
+                    onChange={this.handleInputChange}
+                />
+
+                <TextInput
+                    label="Link"
+                    name="link"
+                    value={this.state.link}
+                    onChange={this.handleInputChange}
+                />
+
+                <button type="button" className="pt-button pt-large pt-right pt-intent-primary" onClick={this.handleSubmit}>Quote</button>
             </div>
         </div>)
     }

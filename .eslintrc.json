@@ -6,21 +6,19 @@
       "version": "15.0" // React version, default to the latest React stable release
     }
   },
-  "parserOptions": {
+"parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
     "ecmaFeatures": {
-      "jsx": true
+      "jsx": true,
+      "modules": true,
+      "experimentalObjectRestSpread": true
     }
-  },
-  "rules": {
-    "semi": 2
-  },
+},
   "env": {
     "browser": true,
     "node": true,
-    "mocha": true,
-    "es6": true
+    "mocha": true
   },
   "extends": ["eslint:recommended", "plugin:react/recommended"],
   "plugins": ["react"]

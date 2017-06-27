@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import QuoteScene from '../components/QuoteScene'
 
-export default class Home extends React.Component {
+class Home extends React.Component {
   
   static propTypes = {
       data: PropTypes.object,
@@ -10,11 +10,13 @@ export default class Home extends React.Component {
   
   componentWillMount = () => {
       const {data} = this.props
+      console.log('Home')
   }
 
   render() {
     const {data} = this.props;
     return (<div style={styles.container}>
+      <QuoteScene />
     </div>);
   }
 }
@@ -26,3 +28,5 @@ const styles = {
     margin: '0px'
   }
 };
+
+export default Home

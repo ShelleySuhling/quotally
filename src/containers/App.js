@@ -1,13 +1,17 @@
 import React from 'react';
 import Home from './Home';
-import Quote from './Quote';
 
 import data from '../api/data';
 
-export default class App extends React.Component {
+class App extends React.Component {
+  
+  componentWillMount () {
+    console.log('mounted')
+  }
+
   render() {
-    return (<div><Home data={data} /></div>,
-    document.getElementById('root')
-    );
+    return <Home data={data} />;
   }
 }
+
+export default App;
